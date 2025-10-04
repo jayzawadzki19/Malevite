@@ -1,0 +1,16 @@
+<div class="stack">
+  <div class="indicator-row">
+    <mv-morning-erection-indicator />
+  </div>
+  <mv-health-metric-slider
+    *ngFor="let m of metrics"
+    [name]="m.name"
+    [value]="m.value"
+    (valueChange)="m.value = $event"
+    [baseColor]="m.color"
+    [unitIcon]="m.unitIcon">
+    <div metric-icon class="emoji">{{ m.icon }}</div>
+  </mv-health-metric-slider>
+</div>
+
+

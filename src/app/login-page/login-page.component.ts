@@ -34,7 +34,7 @@ export class LoginPageComponent {
       console.log('Mock login success for:', email);
       this.isSubmitting.set(false);
       this.loginMessage.set('Logged in (mock)');
-      this.router.navigate(['/app']);
+      this.router.navigate(['/app/checkup']);
     }, 600);
   }
 }

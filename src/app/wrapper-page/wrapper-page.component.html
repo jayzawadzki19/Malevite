@@ -10,9 +10,22 @@
   </section>
 
   <nav class="navbar">
-    <a class="nav-btn" aria-label="Tab 1" [routerLink]="['/app']"></a>
-    <a class="nav-btn nav-btn--active" aria-label="Tab 2" [routerLink]="['/app']"></a>
-    <a class="nav-btn" aria-label="Tab 3" [routerLink]="['/app']"></a>
+    <a class="nav-btn" routerLinkActive="nav-btn--active" [routerLink]="['/app/checkup']" aria-label="Checkup">
+      <span class="nav-btn__icon">✔️</span>
+      <span class="nav-btn__label">Checkup</span>
+    </a>
+    <a class="nav-btn" routerLinkActive="nav-btn--active" [routerLink]="['/app/optimize']" aria-label="Optimize">
+      <span class="nav-btn__icon">⚡️</span>
+      <span class="nav-btn__label">Optimize</span>
+    </a>
+    <a class="nav-btn" routerLinkActive="nav-btn--active" [routerLink]="['/app/dashboard']" aria-label="Analyze">
+      <span class="nav-btn__icon">📊</span>
+      <span class="nav-btn__label">Analyze</span>
+    </a>
+    <a class="nav-btn" routerLinkActive="nav-btn--active" [routerLink]="['/app/profile']" aria-label="Profile">
+      <span class="nav-btn__icon">👤</span>
+      <span class="nav-btn__label">Profile</span>
+    </a>
   </nav>
 </div>
 

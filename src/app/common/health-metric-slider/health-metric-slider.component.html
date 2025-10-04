@@ -1,0 +1,28 @@
+<article class="metric" [style.--baseColor]="baseColor">
+  <div class="metric__header">
+    <div class="metric__icon">
+      <ng-content select="[metric-icon]"></ng-content>
+    </div>
+    <div class="metric__name">{{ name }}</div>
+    <div class="metric__value">{{ value }}%</div>
+  </div>
+
+  <div class="metric__slider">
+    <div class="metric__slider-fill" [style.width.%]="value"></div>
+    <mat-slider class="metric__mat-slider" [min]="0" [max]="100" [step]="1">
+      <input matSliderThumb [value]="value" (input)="onInput($event)" />
+    </mat-slider>
+  </div>
+
+  <div class="metric__scale">
+    <span>0</span>
+    <div class="metric__units">
+      <span class="unit" *ngFor="let u of unitArray(); let i = index" [class.unit--active]="i < activeUnits">
+        {{ unitIcon }}
+      </span>
+    </div>
+    <span>100</span>
+  </div>
+</article>
+
+

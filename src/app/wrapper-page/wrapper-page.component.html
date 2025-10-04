@@ -1,0 +1,19 @@
+<div class="wrapper">
+  <header class="tabs">
+    <div class="tabs__track">
+      <div class="tabs__pill"></div>
+    </div>
+  </header>
+
+  <section class="content">
+    <router-outlet />
+  </section>
+
+  <nav class="navbar">
+    <a class="nav-btn" aria-label="Tab 1" [routerLink]="['/app']"></a>
+    <a class="nav-btn nav-btn--active" aria-label="Tab 2" [routerLink]="['/app']"></a>
+    <a class="nav-btn" aria-label="Tab 3" [routerLink]="['/app']"></a>
+  </nav>
+</div>
+
+

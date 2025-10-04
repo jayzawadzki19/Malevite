@@ -40,10 +40,20 @@
   overflow: hidden;
   background: linear-gradient(180deg, #161920, #0f1218);
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: stretch;
   color: #c8d0e0;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.phone-screen > router-outlet {
+  display: contents; /* prevent outlet element from taking space */
+}
+
+.phone-screen > :not(router-outlet) {
+  flex: 1 1 auto;
+  min-height: 0; /* allow inner grids to size correctly */
 }
 
 .phone-bottom {

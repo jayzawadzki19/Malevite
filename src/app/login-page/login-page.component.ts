@@ -1,6 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'mv-login-page',
@@ -14,7 +15,7 @@ export class LoginPageComponent {
   protected readonly loginMessage = signal<string | null>(null);
   protected readonly loginForm: FormGroup;
 
-  constructor(private readonly fb: FormBuilder) {
+  constructor(private readonly fb: FormBuilder, private readonly router: Router) {
     this.loginForm = this.fb.nonNullable.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
@@ -33,6 +34,7 @@ export class LoginPageComponent {
       console.log('Mock login success for:', email);
       this.isSubmitting.set(false);
       this.loginMessage.set('Logged in (mock)');
+      this.router.navigate(['/app']);
     }, 600);
   }
 }

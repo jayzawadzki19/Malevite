@@ -1,6 +1,6 @@
 <div class="stack">
   <div class="indicator-row">
-    <mv-morning-erection-indicator />
+    <mv-morning-erection-indicator [(value)]="morningDown" />
   </div>
   <mv-health-metric-slider
     *ngFor="let m of metrics"
@@ -11,6 +11,7 @@
     [unitIcon]="m.unitIcon">
     <div metric-icon class="emoji">{{ m.icon }}</div>
   </mv-health-metric-slider>
+  <button class="submit" type="button" (click)="onSubmit()">Submit</button>
 </div>
 
 

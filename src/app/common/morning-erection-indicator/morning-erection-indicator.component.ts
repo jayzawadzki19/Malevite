@@ -1,4 +1,4 @@
-import { Component, Input, signal } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'mv-morning-erection-indicator',
@@ -8,8 +8,12 @@ import { Component, Input, signal } from '@angular/core';
 })
 export class MorningErectionIndicatorComponent {
   @Input() label: string = 'Morning erection';
-  protected readonly isDown = signal(true);
-  protected toggle(): void { this.isDown.update(v => !v); }
+  @Input() value: boolean = true; // true => down (horizontal), false => up (vertical)
+  @Output() valueChange = new EventEmitter<boolean>();
+  protected toggle(): void {
+    this.value = !this.value;
+    this.valueChange.emit(this.value);
+  }
 }
 
 

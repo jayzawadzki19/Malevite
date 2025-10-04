@@ -1,6 +1,6 @@
-<button class="indicator" type="button" (click)="toggle()" [class.indicator--down]="isDown()" aria-label="Morning erection indicator">
+<button class="indicator" type="button" (click)="toggle()" [class.indicator--down]="value" aria-label="Morning erection indicator">
   <span class="label">{{ label }}</span>
-  <span class="eggplant" [class.eggplant--down]="isDown()">🍆</span>
+  <span class="eggplant" [class.eggplant--down]="value">🍆</span>
 </button>
 
 

@@ -1,0 +1,27 @@
+<form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+  <h1 class="login__title">Malevite</h1>
+
+  <div class="field" [class.field--invalid]="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">
+    <label for="email">Email</label>
+    <input id="email" type="email" formControlName="email" placeholder="you@example.com" autocomplete="email" />
+    <div class="field__error" *ngIf="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">
+      {{ loginForm.controls['email'].errors?.['required'] ? 'Email is required' : 'Provide a valid email' }}
+    </div>
+  </div>
+
+  <div class="field" [class.field--invalid]="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">
+    <label for="password">Password</label>
+    <input id="password" type="password" formControlName="password" placeholder="••••••••" autocomplete="current-password" />
+    <div class="field__error" *ngIf="loginForm.controls['password'].touched && loginForm.controls['password'].invalid">
+      {{ loginForm.controls['password'].errors?.['required'] ? 'Password is required' : 'Minimum 6 characters' }}
+    </div>
+  </div>
+
+  <button class="btn btn--primary" type="submit" [disabled]="isSubmitting() || loginForm.invalid">
+    {{ isSubmitting() ? 'Signing in…' : 'Sign in' }}
+  </button>
+
+  <div class="login__message" *ngIf="loginMessage()">{{ loginMessage() }}</div>
+</form>
+
+

@@ -10,7 +10,7 @@
   </section>
 
   <nav class="navbar">
-    <a class="nav-btn" routerLinkActive="nav-btn--active" [routerLink]="['/app/checkup']" aria-label="Checkup">
+    <a class="nav-btn" [class.nav-btn--active]="isCheckupActive()" routerLinkActive="nav-btn--active" [routerLink]="['/app/checkup']" aria-label="Checkup">
       <span class="nav-btn__icon">✔️</span>
       <span class="nav-btn__label">Checkup</span>
     </a>

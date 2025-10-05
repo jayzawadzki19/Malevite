@@ -1,23 +1,30 @@
 import { Component } from '@angular/core';
 import { NgFor, DecimalPipe } from '@angular/common';
 import { GoalTrackComponent } from '../common/goal-track/goal-track.component';
+import { ScoringService } from '../common/scoring/scoring.service';
+import { NgIf } from '@angular/common';
 
 @Component({
   selector: 'mv-dashboard-page',
   standalone: true,
-  imports: [NgFor, DecimalPipe, GoalTrackComponent],
+  imports: [NgFor, DecimalPipe, GoalTrackComponent, NgIf],
   templateUrl: './dashboard-page.component.html',
   styleUrl: './dashboard-page.component.scss'
 })
 export class DashboardPageComponent {
   protected readonly goals = [
-    { icon: '🌙', goal: 'Get 7.5h Sleep', progress: '4/7 days', xp: 50, accent: '#80d8ff' },
-    { icon: '⚡️', goal: '3x Strength Training', progress: '2/3 sessions', xp: 50, accent: '#ffd54f' },
-    { icon: '💊', goal: 'Optimize Zinc Intake', progress: '1/5 days', xp: 75, accent: '#ff80ab' }
-  ];
+    { icon: '🌙', id: 'sleep', accent: '#80d8ff' },
+    { icon: '⚡️', id: 'strength', accent: '#ffd54f' },
+    { icon: '💧', id: 'hydration', accent: '#ff80ab' }
+  ] as const;
   protected readonly data = [468, 476, 475, 489, 500];
-  protected streak = 23;
-  protected totalXp = 3847;
+  constructor(public readonly scoring: ScoringService) {}
+
+  protected goalView(id: string): { goal: string; progress: string; xp: number } {
+    const list = this.scoring.dashboardGoals();
+    const found = list.find(g => g.id === id);
+    return found ? { goal: found.goal, progress: found.progress, xp: found.xp } : { goal: '', progress: '', xp: 0 };
+  }
 }
 
 

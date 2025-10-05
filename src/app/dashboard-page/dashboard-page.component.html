@@ -16,18 +16,30 @@
   <h3 class="dash__section">This week you're working on</h3>
 
   <div class="dash__goals">
-    <mv-goal-track *ngFor="let g of goals" [icon]="g.icon" [goal]="g.goal" [progress]="g.progress" [xp]="g.xp" [accent]="g.accent" />
+    <mv-goal-track *ngFor="let g of goals"
+      [icon]="g.icon"
+      [goal]="goalView(g.id).goal"
+      [progress]="goalView(g.id).progress"
+      [xp]="goalView(g.id).xp"
+      [accent]="g.accent" />
   </div>
 
   <div class="dash__footer">
     <div class="streak">
       <div class="streak__label">Checkup Streak</div>
-      <div class="streak__value">{{ streak }}</div>
+      <div class="streak__value">{{ scoring.streak() }}</div>
     </div>
     <div class="xp">
       <div class="xp__label">Total Points</div>
-      <div class="xp__value">{{ totalXp | number }}</div>
+      <div class="xp__value">{{ scoring.totalXp() | number }}</div>
       <div class="xp__caption">XP Earned</div>
+    </div>
+  </div>
+
+  <h3 class="dash__section">Recent mornings</h3>
+  <div class="dash__chart">
+    <div class="chart__labels">
+      <span *ngFor="let d of scoring.recentCheckupEmoji()">{{ d.day }} {{ d.emoji }}</span>
     </div>
   </div>
 </section>

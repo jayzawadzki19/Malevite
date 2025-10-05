@@ -4,7 +4,8 @@
     <mv-task-item
       *ngFor="let t of tasks"
       [description]="t.description"
-      [(checked)]="t.done"
+      [checked]="t.done"
+      (checkedChange)="onToggle(t.id, $event)"
       [baseColor]="t.color"
     ></mv-task-item>
   </div>

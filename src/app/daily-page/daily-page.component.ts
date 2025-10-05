@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NgFor } from '@angular/common';
 import { TaskItemComponent } from '../common/task-item/task-item.component';
+import { ScoringService } from '../common/scoring/scoring.service';
 
 interface DailyTask { description: string; done: boolean; color: string; }
 
@@ -12,13 +13,25 @@ interface DailyTask { description: string; done: boolean; color: string; }
   styleUrl: './daily-page.component.scss'
 })
 export class DailyPageComponent {
-  protected tasks: DailyTask[] = [
-    { description: '10-minute sunlight exposure after wake-up', done: false, color: '#6ec6ff' },
-    { description: 'Protein-rich breakfast (30g+)', done: false, color: '#00d2ff' },
-    { description: '3L water throughout the day', done: false, color: '#bf5af2' },
-    { description: '45-minute strength training', done: false, color: '#ff8a00' },
-    { description: 'No screens 60 minutes before sleep', done: false, color: '#ff005d' }
-  ];
+  protected tasks: { description: string; done: boolean; color: string; id: string }[] = [];
+
+  constructor(private readonly scoring: ScoringService) {
+    this.reloadTasks();
+  }
+
+  protected onToggle(id: string, checked: boolean): void {
+    this.scoring.toggleTask(id, checked);
+    this.reloadTasks();
+  }
+
+  private reloadTasks(): void {
+    this.tasks = this.scoring.loadTodayTasks().map(x => ({
+      id: x.task.id,
+      description: x.task.description,
+      color: x.task.color,
+      done: x.state.done
+    }));
+  }
 }
 
 

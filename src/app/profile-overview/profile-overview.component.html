@@ -1,6 +1,76 @@
-<div class="mock">
-  <h2>Profile Overview (mock)</h2>
-  <p>This is a placeholder for the user's profile overview.</p>
-</div>
+<section class="profile">
+  <aside class="sidebar">
+    <div class="avatar">
+      <div class="avatar__img" [class.avatar__img--empty]="!profile.avatarDataUrl">
+        <img *ngIf="profile.avatarDataUrl" [src]="profile.avatarDataUrl" alt="Avatar" />
+        <div *ngIf="!profile.avatarDataUrl" class="avatar__placeholder"></div>
+      </div>
+      <label class="btn" for="avatarInput">Upload</label>
+      <input id="avatarInput" type="file" accept="image/*" (change)="onAvatarSelect($event)" hidden />
+    </div>
+
+    <div class="upload-block">
+      <h3>Upload files</h3>
+      <label class="drop" for="filesInput">Drop files to upload</label>
+      <input id="filesInput" type="file" multiple (change)="onFilesSelect($event)" hidden />
+      <button class="link" type="button" (click)="openFilesDialog()">Browse</button>
+      <ul class="file-list">
+        <li *ngFor="let f of uploads">
+          <span>{{ f }}</span>
+          <button type="button" class="x" (click)="removeUpload(f)">×</button>
+        </li>
+      </ul>
+    </div>
+
+    <div class="upload-block">
+      <h3>Upload medical reports</h3>
+      <label class="drop" for="reportsInput">Drop files to upload</label>
+      <input id="reportsInput" type="file" multiple (change)="onReportsSelect($event)" hidden />
+      <ul class="file-list">
+        <li *ngFor="let f of reports">
+          <span>{{ f }}</span>
+          <button type="button" class="x" (click)="removeReport(f)">×</button>
+        </li>
+      </ul>
+    </div>
+  </aside>
+
+  <div class="panel">
+    <h2 class="panel__title">Edit Profile</h2>
+    <form class="form" (ngSubmit)="saveChanges()">
+      <div class="grid">
+        <label>Username<input [(ngModel)]="profile.username" name="username" placeholder="Username" /></label>
+        <label>Full Name<input [(ngModel)]="profile.fullName" name="fullName" placeholder="Anythame" /></label>
+        <label>Email<input [(ngModel)]="profile.email" name="email" placeholder="Phone" /></label>
+        <label>Password<input [(ngModel)]="profile.password" name="password" placeholder="Bio" type="password" /></label>
+
+        <label class="row">
+          <span>Two-factor authentication</span>
+          <input type="checkbox" [(ngModel)]="profile.twoFactor" name="twoFactor" />
+        </label>
+
+        <label>Gender<select [(ngModel)]="profile.gender" name="gender"><option>Male</option><option>Female</option><option>Other</option></select></label>
+        <label>Date of Birth<input [(ngModel)]="profile.dob" name="dob" placeholder="MM/DD/YYYY" /></label>
+        <label>Time Zone<input [(ngModel)]="profile.timeZone" name="timeZone" placeholder="GMT+0" /></label>
+        <label>Connected Apps<input [(ngModel)]="profile.connectedApps" name="connectedApps" placeholder="None" /></label>
+        <label>Units<select [(ngModel)]="profile.units" name="units"><option>Imperial</option><option>Metric</option></select></label>
+      </div>
+
+      <div class="meta">
+        <div class="verified" [class.verified--on]="profile.verified">✔ Verified</div>
+        <div class="xp">XP {{ scoring.totalXp() | number:'1.0-0' }}</div>
+      </div>
+
+      <div class="actions">
+        <button class="btn btn--primary" type="submit">Save changes</button>
+      </div>
+    </form>
+
+    <div class="danger">
+      <h3>Danger zone</h3>
+      <button class="btn btn--danger" type="button" (click)="deleteAccount()">Delete account</button>
+    </div>
+  </div>
+</section>
 
 

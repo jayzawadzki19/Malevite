@@ -1,5 +1,6 @@
 <form class="login" [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
   <h1 class="login__title">Malevite</h1>
+  <span style="font-size: 12px; color: #89e28f;">*Any data will pass</span>
 
   <div class="field" [class.field--invalid]="loginForm.controls['email'].touched && loginForm.controls['email'].invalid">
     <label for="email">Email</label>

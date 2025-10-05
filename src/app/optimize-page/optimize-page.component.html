@@ -1,6 +1,17 @@
-<div class="mock">
-  <h2>Optimize (mock)</h2>
-  <p>This is a placeholder for optimization tips and actions.</p>
-</div>
+<section class="optimize">
+  <h1 class="optimize__title">Your Optimization Plan</h1>
+  <p class="optimize__subtitle">Focus areas based on your health profile</p>
+
+  <div class="optimize__meter">
+    <div class="optimize__meter-fill" [style.width.%]="overallScore"></div>
+  </div>
+  <div class="optimize__score">{{ overallScore }}/100 Overall Health Score</div>
+
+  <div class="grid">
+    <mv-area-card *ngFor="let c of cards" [title]="c.title" [score]="c.score" [status]="c.status" [accentColor]="c.accent">
+      <div area-icon>{{ c.icon }}</div>
+    </mv-area-card>
+  </div>
+</section>
 
 

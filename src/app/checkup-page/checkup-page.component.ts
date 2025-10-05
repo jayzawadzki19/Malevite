@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgFor } from '@angular/common';
 import { HealthMetricSliderComponent } from '../common/health-metric-slider/health-metric-slider.component';
 import { MorningErectionIndicatorComponent } from '../common/morning-erection-indicator/morning-erection-indicator.component';
@@ -19,12 +20,19 @@ export class CheckupPageComponent {
     { name: 'Sex drive', value: 50, color: '#ff005d', icon: '👄', unitIcon: '💪' },
   ];
 
+  constructor(private readonly router: Router) {}
+
   protected onSubmit(): void {
     const payload = {
       morningErectionDown: this.morningDown,
       metrics: this.metrics.map(m => ({ name: m.name, value: m.value }))
     };
     console.log('Checkup submit:', payload);
+    try {
+      localStorage.setItem('malevite.hasSubmittedMetrics', 'true');
+      localStorage.setItem('malevite.lastMetrics', JSON.stringify(payload));
+    } catch {}
+    this.router.navigate(['/app/daily']);
   }
 }
 

@@ -1,7 +1,5 @@
-<div class="task" [style.--baseColor]="baseColor">
-  <button class="task__check" type="button" (click)="toggle()" [class.task__check--on]="checked" aria-label="Toggle task">
-    <span class="task__dot"></span>
-  </button>
+<div class="task" [style.--baseColor]="baseColor" [class.task--checked]="checked">
+  <button class="task__check" type="button" (click)="toggle()" [class.task__check--on]="checked" aria-label="Toggle task"></button>
   <div class="task__desc">{{ description }}</div>
 </div>
 

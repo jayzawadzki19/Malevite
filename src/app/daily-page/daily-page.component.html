@@ -1,0 +1,13 @@
+<div class="daily">
+  <h2 class="daily__title">Today</h2>
+  <div class="daily__list">
+    <mv-task-item
+      *ngFor="let t of tasks"
+      [description]="t.description"
+      [(checked)]="t.done"
+      [baseColor]="t.color"
+    ></mv-task-item>
+  </div>
+</div>
+
+

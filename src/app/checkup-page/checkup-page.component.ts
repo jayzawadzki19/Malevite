@@ -13,7 +13,7 @@ import { MorningErectionIndicatorComponent } from '../common/morning-erection-in
 export class CheckupPageComponent {
   protected morningDown = true;
   protected readonly metrics = [
-    { name: 'Energy', value: 50, color: '#6ec6ff', icon: '⚡️', unitIcon: '💪' },
+    { name: 'Energy', value: 50, color: '#c4b229', icon: '⚡️', unitIcon: '💪' },
     { name: 'Mood', value: 50, color: '#00d2ff', icon: '😊', unitIcon: '💪' },
     { name: 'Sleep Quality', value: 50, color: '#bf5af2', icon: '🌙', unitIcon: '💪' },
     { name: 'Sex drive', value: 50, color: '#ff005d', icon: '👄', unitIcon: '💪' },

@@ -1,6 +1,7 @@
 .dash{height:100%;display:flex;flex-direction:column;gap:14px;overflow:auto}
 .dash__header{display:flex;align-items:center;gap:12px}
-.dash__avatar{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;background:#141923;border:1px solid #1d2533}
+.dash__avatar{width:56px;height:56px;border-radius:999px;display:grid;place-items:center;background:#141923;border:1px solid #1d2533;overflow:hidden}
+.dash__avatar img{width:100%;height:100%;object-fit:cover}
 .dash__title{margin:0;color:#6ec6ff;font-size:24px;font-weight:800}
 
 .dash__chart{background:#0f1420;border:1px solid #1d2533;border-radius:12px;padding:8px 8px 18px 8px}

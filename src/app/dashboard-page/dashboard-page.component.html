@@ -1,6 +1,35 @@
-<div class="mock">
-  <h2>Dashboard (mock)</h2>
-  <p>This is a placeholder for the dashboard.</p>
-</div>
+<section class="dash">
+  <header class="dash__header">
+    <div class="dash__avatar">🕶️</div>
+    <h1 class="dash__title">Latest testosterone levels</h1>
+  </header>
+
+  <div class="dash__chart">
+    <svg viewBox="0 0 320 120" preserveAspectRatio="none">
+      <polyline class="chart-line" points="0,90 60,70 120,72 180,80 240,60 300,50" />
+    </svg>
+    <div class="chart__labels">
+      <span *ngFor="let v of data">{{ v }}</span>
+    </div>
+  </div>
+
+  <h3 class="dash__section">This week you're working on</h3>
+
+  <div class="dash__goals">
+    <mv-goal-track *ngFor="let g of goals" [icon]="g.icon" [goal]="g.goal" [progress]="g.progress" [xp]="g.xp" [accent]="g.accent" />
+  </div>
+
+  <div class="dash__footer">
+    <div class="streak">
+      <div class="streak__label">Checkup Streak</div>
+      <div class="streak__value">{{ streak }}</div>
+    </div>
+    <div class="xp">
+      <div class="xp__label">Total Points</div>
+      <div class="xp__value">{{ totalXp | number }}</div>
+      <div class="xp__caption">XP Earned</div>
+    </div>
+  </div>
+</section>
 
 
